@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f6abbeecd09c487793c000582fb885c5" Name="Diagram1">
+        <EntityTypeShape EntityType="kp11Model.Diagnosis" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="kp11Model.Doctor" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="kp11Model.Entry" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="kp11Model.Medicament" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kp11Model.Patient" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kp11Model.Schedule" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="kp11Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kp11Model.Visit" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="kp11Model.FK_Visit_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="kp11Model.FK_Entry_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="kp11Model.FK_Patient_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="kp11Model.FK_Schedule_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="kp11Model.FK_Visit_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="kp11Model.FK_Entry_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="kp11Model.FK_Entry_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="kp11Model.FK_Visit_ToTable_3" ManuallyRouted="false" />
+        <AssociationConnector Association="kp11Model.FK_Visit_ToTable_1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
