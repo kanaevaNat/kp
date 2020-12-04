@@ -1,0 +1,64 @@
+﻿@model IEnumerable<kp4.Models.Doctor>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.last_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.patronymic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cabinet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spec)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.last_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.patronymic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cabinet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spec)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.ActionLink("Записаться", "Create", "Entry") |
+            @Html.ActionLink("Изменить", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Подробнее", "Details", new { id = item.id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>
