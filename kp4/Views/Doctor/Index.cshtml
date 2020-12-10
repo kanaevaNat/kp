@@ -53,7 +53,7 @@
             @Html.DisplayFor(modelItem => item.date)
         </td>
         <td>
-            @Html.ActionLink("Записаться", "Create", "Entry") |
+            @Html.ActionLink("Записаться", "CreateForDoctor2", "Entry", new { iddoctor = item.id }, new { @iddoctor = "id_doctor" }) |
             @Html.ActionLink("Изменить", "Edit", new { id = item.id }) |
             @Html.ActionLink("Подробнее", "Details", new { id = item.id }) |
             @Html.ActionLink("Удалить", "Delete", new { id = item.id })

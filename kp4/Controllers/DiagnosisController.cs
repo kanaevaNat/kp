@@ -18,7 +18,7 @@ namespace kp4.Controllers
     {
         DiagnosisDAO diagnosisdao = new DiagnosisDAO();
         Diagnosis diagnosis = new Diagnosis();
-        private kp14Entities db = new kp14Entities();
+        private kp44Entities db = new kp44Entities();
 
         // GET: Diagnosis
         public ActionResult Index()

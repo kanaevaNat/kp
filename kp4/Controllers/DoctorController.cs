@@ -13,7 +13,7 @@ namespace kp4.Controllers
     {
         
         Doctor doctor = new Doctor();
-        private kp14Entities db = new kp14Entities();
+        private kp44Entities db = new kp44Entities();
         // GET: Doctor
         public ActionResult Index()
         {

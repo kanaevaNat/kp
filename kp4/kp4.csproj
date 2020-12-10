@@ -176,6 +176,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedicamentController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\DiagnosisDAO.cs" />
     <Compile Include="DAO\MedicamentDAO.cs" />
@@ -184,45 +185,48 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Diagnosis.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp44.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Doctor.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp44.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entry.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp44.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\kp11.Context.cs">
+    <Compile Include="Models\kp44.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>kp11.Context.tt</DependentUpon>
+      <DependentUpon>kp44.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\kp11.cs">
+    <Compile Include="Models\kp44.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp44.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\kp11.Designer.cs">
+    <Compile Include="Models\kp44.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>kp11.edmx</DependentUpon>
+      <DependentUpon>kp44.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Medicament.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp44.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Patient.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp44.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Schedule.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp44.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StatusEntry.cs">
+      <DependentUpon>kp44.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp44.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Visit.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp44.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -236,24 +240,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\kp11.Context.tt">
+    <Content Include="Models\kp44.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>kp11.edmx</DependentUpon>
-      <LastGenOutput>kp11.Context.cs</LastGenOutput>
+      <DependentUpon>kp44.edmx</DependentUpon>
+      <LastGenOutput>kp44.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\kp11.tt">
+    <Content Include="Models\kp44.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>kp11.edmx</DependentUpon>
-      <LastGenOutput>kp11.cs</LastGenOutput>
+      <DependentUpon>kp44.edmx</DependentUpon>
+      <LastGenOutput>kp44.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\kp11.edmx">
+    <EntityDeploy Include="Models\kp44.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>kp11.Designer.cs</LastGenOutput>
+      <LastGenOutput>kp44.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\kp11.edmx.diagram">
-      <DependentUpon>kp11.edmx</DependentUpon>
+    <Content Include="Models\kp44.edmx.diagram">
+      <DependentUpon>kp44.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -320,6 +324,7 @@
     <Content Include="Views\Entry\Create.cshtml" />
     <Content Include="Views\Entry\Edit.cshtml" />
     <Content Include="Views\Entry\DeleteOne.cshtml" />
+    <Content Include="Views\Entry\CreateForDoctor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
