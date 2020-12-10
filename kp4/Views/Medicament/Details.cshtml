@@ -1,0 +1,20 @@
+﻿@model kp4.Models.Medicament
+
+<div>
+    <h4>Лекарство</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Вернуться к списку", "Index")
+</p>

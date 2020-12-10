@@ -1,0 +1,44 @@
+﻿@model kp4.Models.Entry
+
+<div>
+    <h4>Заявка</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_patient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_patient)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_doctor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_doctor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_schedule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_schedule)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Вернуться к списку", "Index")
+</p>
