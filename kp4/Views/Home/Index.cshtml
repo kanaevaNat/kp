@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="jumbotron">
+    @{ if (User.IsInRole("doctor"))
+        {@Html.ActionLink("Заявки", "IndexForDoctor", "Entry")
+            <br>
+        @Html.ActionLink("Расписание", "Index", "Schedule")
+    }
+    }
+    @{ if (User.IsInRole("patient"))
+        {@Html.ActionLink("Заявки", "IndexForPatient", "Entry")}
+    }
+</div>
+

@@ -176,6 +176,9 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedicamentController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\StatusEntryController.cs" />
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\DiagnosisDAO.cs" />
     <Compile Include="DAO\MedicamentDAO.cs" />
@@ -184,45 +187,48 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Diagnosis.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp49.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Doctor.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp49.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entry.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp49.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\kp11.Context.cs">
+    <Compile Include="Models\kp49.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>kp11.Context.tt</DependentUpon>
+      <DependentUpon>kp49.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\kp11.cs">
+    <Compile Include="Models\kp49.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp49.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\kp11.Designer.cs">
+    <Compile Include="Models\kp49.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>kp11.edmx</DependentUpon>
+      <DependentUpon>kp49.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Medicament.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp49.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Patient.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp49.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Schedule.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp49.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StatusEntry.cs">
+      <DependentUpon>kp49.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp49.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Visit.cs">
-      <DependentUpon>kp11.tt</DependentUpon>
+      <DependentUpon>kp49.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -236,24 +242,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\kp11.Context.tt">
+    <Content Include="Models\kp49.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>kp11.edmx</DependentUpon>
-      <LastGenOutput>kp11.Context.cs</LastGenOutput>
+      <DependentUpon>kp49.edmx</DependentUpon>
+      <LastGenOutput>kp49.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\kp11.tt">
+    <Content Include="Models\kp49.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>kp11.edmx</DependentUpon>
-      <LastGenOutput>kp11.cs</LastGenOutput>
+      <DependentUpon>kp49.edmx</DependentUpon>
+      <LastGenOutput>kp49.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\kp11.edmx">
+    <EntityDeploy Include="Models\kp49.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>kp11.Designer.cs</LastGenOutput>
+      <LastGenOutput>kp49.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\kp11.edmx.diagram">
-      <DependentUpon>kp11.edmx</DependentUpon>
+    <Content Include="Models\kp49.edmx.diagram">
+      <DependentUpon>kp49.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -304,26 +310,30 @@
     <Content Include="Views\Medicament\Create.cshtml" />
     <Content Include="Views\Medicament\Edit.cshtml" />
     <Content Include="Views\Medicament\DeleteOne.cshtml" />
-    <Content Include="Views\Doctor\Index.cshtml" />
-    <Content Include="Views\Doctor\Details.cshtml" />
     <Content Include="Views\Doctor\Create.cshtml" />
-    <Content Include="Views\Doctor\Edit.cshtml" />
-    <Content Include="Views\Doctor\DeleteOne.cshtml" />
     <Content Include="Views\Medicament\Index.cshtml" />
     <Content Include="Views\Diagnosis\Index.cshtml" />
     <Content Include="Views\Diagnosis\Details.cshtml" />
     <Content Include="Views\Diagnosis\Create.cshtml" />
     <Content Include="Views\Diagnosis\Edit.cshtml" />
     <Content Include="Views\Diagnosis\DeleteOne.cshtml" />
+    <Content Include="Views\StatusEntry\Create.cshtml" />
+    <Content Include="Views\StatusEntry\Index.cshtml" />
     <Content Include="Views\Entry\Index.cshtml" />
-    <Content Include="Views\Entry\Details.cshtml" />
-    <Content Include="Views\Entry\Create.cshtml" />
+    <Content Include="Views\Doctor\AddEntry.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Entry\AddVisit.cshtml" />
+    <Content Include="Views\Entry\IndexForDoctor.cshtml" />
+    <Content Include="Views\Entry\IndexForPatient.cshtml" />
+    <Content Include="Views\Schedule\Index.cshtml" />
+    <Content Include="Views\Patient\Account.cshtml" />
+    <Content Include="Views\Patient\Edit.cshtml" />
+    <Content Include="Views\Doctor\Account.cshtml" />
+    <Content Include="Views\Schedule\AddSchedule.cshtml" />
     <Content Include="Views\Entry\Edit.cshtml" />
-    <Content Include="Views\Entry\DeleteOne.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Schedule\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

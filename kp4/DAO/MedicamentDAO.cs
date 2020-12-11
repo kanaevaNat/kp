@@ -9,7 +9,7 @@ namespace kp4.DAO
 {
     public class MedicamentDAO
     {
-        private kp14Entities db = new kp14Entities();
+        private kp49Entities db = new kp49Entities();
         public void AddNew(Medicament medicament)
         {
             db.Medicament.Add(medicament);

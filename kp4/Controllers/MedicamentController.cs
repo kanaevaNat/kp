@@ -13,7 +13,7 @@ namespace kp4.Controllers
     {
         MedicamentDAO medicamentdao = new MedicamentDAO();
         Medicament medicament = new Medicament();
-        private kp14Entities db = new kp14Entities();
+        private kp49Entities db = new kp49Entities();
         
         // GET: Medicament
         

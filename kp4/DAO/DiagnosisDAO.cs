@@ -10,7 +10,7 @@ namespace kp4.DAO
 {
     public class DiagnosisDAO
     {
-        private kp14Entities db = new kp14Entities();
+        private kp49Entities db = new kp49Entities();
         public void AddNew(Diagnosis diagnosis)
         {
             db.Diagnosis.Add(diagnosis);
