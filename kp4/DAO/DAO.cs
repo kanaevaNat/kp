@@ -8,6 +8,6 @@ namespace kp4.DAO
 {
     public class DAO
     {
-        private kp44Entities db = new kp44Entities();
+        private kp49Entities db = new kp49Entities();
     }
 }

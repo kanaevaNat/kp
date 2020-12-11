@@ -14,9 +14,16 @@ namespace kp4.Models
     
     public partial class StatusEntry
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public StatusEntry()
+        {
+            this.Entry = new HashSet<Entry>();
+        }
+    
         public int id { get; set; }
         public string name { get; set; }
     
-        public virtual Entry Entry { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Entry> Entry { get; set; }
     }
 }

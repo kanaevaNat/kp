@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using kp4.Models;
+using System.Threading;
+using System.Data.Entity;
 
 namespace kp4.Controllers
 {
@@ -17,7 +19,7 @@ namespace kp4.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private kp49Entities db = new kp49Entities();
         public AccountController()
         {
         }
@@ -153,10 +155,27 @@ namespace kp4.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await UserManager.AddToRoleAsync(user.Id, "patient");
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+                    var email = user.Email;
+                    //if (User.IsInRole == "doctor"){
+                    /*Doctor doc = new Doctor { login = email };
+                    db.Doctor.Add(doc);
+                    db.SaveChanges();*/
+                    //}
+                    //if (User.IsInRole == "patient"){
+                        Patient pat = new Patient { login = email };
+                        db.Patient.Add(pat);
+                        db.SaveChanges();
+                    //} 
+
+
+
+
                     // Дополнительные сведения о включении подтверждения учетной записи и сброса пароля см. на странице https://go.microsoft.com/fwlink/?LinkID=320771.
                     // Отправка сообщения электронной почты с этой ссылкой
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -166,6 +185,8 @@ namespace kp4.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
+                
+                
             }
 
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы

@@ -7,23 +7,45 @@ using kp4.Models;
 using kp4.DAO;
 using System.Data.Entity;
 using Microsoft.Ajax.Utilities;
+using System.Threading;
+using System.Security.Claims;
 
 namespace kp4.Controllers
 {
     public class EntryController : Controller
     {
+        private kp49Entities db = new kp49Entities();
+ 
+        public ActionResult IndexForDoctor()
+        {
+            var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+            var email = HttpContext.User.Identity.Name;
 
-        private kp44Entities db = new kp44Entities();
-        // GET: Entry
-        public ActionResult Index()
-        {
-            return View(db.Entry.ToList());
+            // проверка в таблице 
+            Doctor doctor = db.Doctor.Where(l => l.login == email).First();
+            var dd = db.Entry.Include(p => p.Doctor);
+            var dd1 = db.Entry.Include(p => p.Patient);
+            var dd2 = db.Entry.Include(p => p.Schedule);
+            var dd3 = db.Entry.Include(p => p.StatusEntry);
+            IEnumerable<Entry> entry = db.Entry.Where(w => w.id_doctor == doctor.id).ToList();
+            
+            return View(entry);
         }
-        public ActionResult ReturnCreate()
+        public ActionResult IndexForPatient()
         {
-            return RedirectToAction("Index");
+            var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+            var email = HttpContext.User.Identity.Name;
+
+            // проверка в таблице 
+            Patient patient = db.Patient.Where(l => l.login == email).First();
+            var dd = db.Entry.Include(p => p.Doctor);
+            var dd1 = db.Entry.Include(p => p.Patient);
+            var dd2 = db.Entry.Include(p => p.Schedule);
+            var dd3 = db.Entry.Include(p => p.StatusEntry);
+            IEnumerable<Entry> entry = db.Entry.Where(w => w.id_patient == patient.id).ToList();
+            return View(entry);
         }
-        // GET: Entry/Details/5
+
         public ActionResult Details(int id)
         {
             Entry entry = db.Entry.Find(id);
@@ -34,59 +56,70 @@ namespace kp4.Controllers
             return View(entry);
         }
 
-        // GET: Entry/Create
-        public ActionResult Create()
+        public ActionResult AddVisit()
         {
-            SelectList schedule = new SelectList(db.Schedule, "id", "date");
-            ViewBag.Schedule = schedule;
+            SelectList diag = new SelectList(db.Diagnosis, "id", "name");
+            ViewBag.Diagnosis = diag;
+            SelectList med = new SelectList(db.Medicament, "id", "name");
+            ViewBag.Medicament = med;
             return View();
-        }
 
-        // POST: Entry/Create
+        }
         [HttpPost]
-        public ActionResult Create(Entry entry)
+        public ActionResult AddVisit(int identry, Visit visit)
         {
             if (ModelState.IsValid)
             {
 
-                db.Entry.Add(entry);
+                var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+                var email = HttpContext.User.Identity.Name;
+
+                // проверка в таблице 
+                Doctor doctor = db.Doctor.Where(l => l.login == email).First();
+
+                Entry entry = db.Entry.Where(l => l.id == identry).First();
+                // 
+                Schedule schedule = db.Schedule.Where(l => l.id == entry.id_schedule).First();
+                StatusEntry st = db.StatusEntry.Where(l => l.id == entry.id_status).First();
+                visit.id_patient = entry.id_patient;
+                if (entry.id_doctor == doctor.id)
+                {
+                    visit.id_doctor = doctor.id;
+                }
+                visit.date = schedule.date;
+                Patient patient = db.Patient.Where(l => l.id == entry.id_patient).First();
+                patient.id_doctor = doctor.id;
+                
+                    db.Visit.Add(visit);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return RedirectToAction("IndexForDoctor");
             }
 
-            return View(entry);
+            return View(visit);
         }
-        public void CreateForDoctor(int iddoctor)
-        {
-            Entry entry = new Entry
-            {
-                id_doctor = iddoctor
-            };
-            CreateForDoctor2(entry);
 
-        }
-        public ActionResult CreateForDoctor2(Entry entry)
-        {
-            db.Entry.Add(entry);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        
+
 
         // GET: Entry/Edit/5
         public ActionResult Edit(int id)
         {
+            SelectList entry1 = new SelectList(db.StatusEntry, "id", "name");
+            ViewBag.StatusEntry = entry1;
+
             return View();
         }
 
         // POST: Entry/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Entry entry)
+        public ActionResult Edit(Entry entry)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(entry).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexForDoctor");
             }
             return View(entry);
         }

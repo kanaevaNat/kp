@@ -21,8 +21,8 @@ namespace kp4.Models
         public Nullable<int> id_status { get; set; }
     
         public virtual Doctor Doctor { get; set; }
-        public virtual StatusEntry StatusEntry { get; set; }
         public virtual Patient Patient { get; set; }
         public virtual Schedule Schedule { get; set; }
+        public virtual StatusEntry StatusEntry { get; set; }
     }
 }

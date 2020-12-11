@@ -25,11 +25,25 @@
                     <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
                     <li>@Html.ActionLink("Информация", "About", "Home")</li>
                     <li>@Html.ActionLink("Связаться", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Диагнозы", "Index", "Diagnosis")</li>
-                    <li>@Html.ActionLink("Лекарства", "Index", "Medicament")</li>
-                    <li>@Html.ActionLink("Врачи", "Index", "Doctor")</li>
-                    <li>@Html.ActionLink("Создать заявку", "Create", "Entry")</li>
-                </ul>
+                    @{ if (User.IsInRole("doctor") || User.IsInRole("admin"))
+                        { <li>@Html.ActionLink("Диагнозы", "Index", "Diagnosis")</li>
+                            <li>@Html.ActionLink("Лекарства", "Index", "Medicament")</li>}}
+                            @{ if (User.IsInRole("patient"))
+                                {
+                                    <li>@Html.ActionLink("Врачи", "Index", "Doctor")</li>
+}}
+                            @{ if (User.IsInRole("doctor"))
+                                {
+                                    <li>@Html.ActionLink("Личный кабинет", "Account", "Doctor")</li>
+                                }
+                            }
+                            @{ if (User.IsInRole("patient"))
+                                {
+                                    <li>@Html.ActionLink("Личный кабинет", "Account", "Patient")</li>
+                                }
+                            }
+
+                        </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
