@@ -12,9 +12,17 @@
             @Html.DisplayFor(model => model.name)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
     </dl>
 </div>
 <p>
     @Html.ActionLink("Изменить", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Вернуться к списку", "Index")
+    @Html.ActionLink("Назад", "Index")
 </p>

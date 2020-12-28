@@ -12,20 +12,20 @@ using System.Security.Claims;
 
 namespace kp4.Controllers
 {
-    /*public static class ExtensionMethod
-    {
+    //public static class ExtensionMethod
+    //{
         
-        public static List<SelectListItem> GetSizeOrganization(this List<SelectListItem> list, int iddoctor)
-        {
-            kp49Entities db = new kp49Entities();
-            var elements = db.Schedule.Where(w => w.date > DateTime.Now && w.status == true && w.id_doctor == iddoctor);
-            foreach (var item in elements)
-            {
-                list.Add(new SelectListItem {Text = item.date.ToString(), Value = item.id.ToString()});
-            }
-            return list;
-        }
-    }*/
+    //    public static List<SelectListItem> GetSizeOrganization(this List<SelectListItem> list, int iddoctor)
+    //    {
+    //        kp49Entities db = new kp49Entities();
+    //        var elements = db.Schedule.Where(w => w.date > DateTime.Now && w.status == true && w.id_doctor == iddoctor);
+    //        foreach (var item in elements)
+    //        {
+    //            list.Add(new SelectListItem {Text = item.date.ToString(), Value = item.id.ToString()});
+    //        }
+    //        return list;
+    //    }
+    //}
     public class DoctorController : Controller
     {
 
@@ -38,6 +38,11 @@ namespace kp4.Controllers
             return View(db.Doctor.ToList());
         }
 
+        public ActionResult Search(string GName)
+        {
+            var doc = db.Doctor.Where(l => l.last_name.Contains(GName));
+            return PartialView(doc);
+        }
         public ActionResult Account()
         {
             var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
@@ -45,9 +50,6 @@ namespace kp4.Controllers
 
             // проверка в таблице 
             Doctor doc = db.Doctor.Where(l => l.login == email).First();
-            int z = doc.id;
-
-            doc = db.Doctor.Find(z);
             return View(doc);
         }
         // GET: Doctor/Details/5
@@ -60,11 +62,22 @@ namespace kp4.Controllers
             }
             return View(doctor);
         }
-
-        public ActionResult AddEntry()
+        public ActionResult SendError()
         {
-            /*ViewBag.Schedule = new List<SelectListItem>().GetSizeOrganization(iddoctor);*/
-            SelectList schedule = new SelectList(db.Schedule, "id", "date");
+            return View();
+        }
+        public ActionResult AddEntry(int iddoctor)
+        {
+            //List<SelectListItem> list = new List<SelectListItem>();
+            //var dd = db.Entry.Include(p => p.Schedule);
+            //var elements = db.Schedule.Where(w => w.date > DateTime.Now && w.status == true && w.id_doctor == iddoctor);
+            //foreach (var item in elements)
+            //{
+            //    list.Add(new SelectListItem { Text = item.date.ToString(), Value = item.id.ToString() });
+            //}
+            //IEnumerable<Schedule> sc = db.Schedule.Where(w => w.date > DateTime.Now && w.status == true && w.id_doctor == iddoctor).ToList();
+            
+            SelectList schedule = new SelectList(db.Schedule.Where(w => w.date > DateTime.Now && w.status == true && w.id_doctor == iddoctor).ToList(), "id", "date");
             ViewBag.Schedule = schedule;
             return View();
         }
@@ -82,14 +95,23 @@ namespace kp4.Controllers
                 // проверка в таблице 
                 Patient patient = db.Patient.Where(l => l.login == email).First();
                 StatusEntry st = db.StatusEntry.Where(l => l.name == "На рассмотрении").First();
+                Schedule sch = db.Schedule.Where(l => l.id == entry.id_schedule).First();
                 int z = patient.id;
                 entry.id_patient = patient.id;
                 entry.id_doctor = iddoctor;
                 entry.id_status = st.id;
-                db.Entry.Add(entry);
-                db.SaveChanges();
+                sch.status = false;
+                if (patient.name == null || patient.last_name == null || patient.patronymic == null || patient.adress == null || patient.date == null)
+                {
+                    return RedirectToAction("SendError");
+                }
+                else
+                {
+                    db.Entry.Add(entry);
+                    db.SaveChanges();
+                }
             }
-            return View(entry);
+            return View("~/Views/Home/Index.cshtml");
         }
 
 
@@ -114,10 +136,12 @@ namespace kp4.Controllers
         }
 
         // GET: Doctor/Edit/5
-        public ActionResult Edit(int id=0)
+        public ActionResult Edit(int id)
         {
-            Doctor doctor = db.Doctor.Find(id);
-            return View(doctor);
+            var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+            var email = HttpContext.User.Identity.Name;
+            Doctor doc = db.Doctor.Where(l => l.login == email).First();
+            return View(doc);
         }
 
         // POST: Doctor/Edit/5

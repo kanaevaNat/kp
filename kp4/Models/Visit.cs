@@ -11,15 +11,22 @@ namespace kp4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Visit
     {
+        [Key]
         public int id { get; set; }
+        [Display(Name = "Врач")]
         public Nullable<int> id_doctor { get; set; }
+        [Display(Name = "Пациент")]
         public Nullable<int> id_patient { get; set; }
+        [Display(Name = "Диагноз")]
         public Nullable<int> id_diagnosis { get; set; }
+        [Display(Name = "Лекарство")]
         public Nullable<int> id_medicament { get; set; }
+        [Display(Name = "Описание")]
         public string info { get; set; }
+        [Display(Name = "Дата")]
         public Nullable<System.DateTime> date { get; set; }
     
         public virtual Diagnosis Diagnosis { get; set; }

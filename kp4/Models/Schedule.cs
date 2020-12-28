@@ -11,7 +11,7 @@ namespace kp4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Schedule
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +19,13 @@ namespace kp4.Models
         {
             this.Entry = new HashSet<Entry>();
         }
-    
+        [Key]
         public int id { get; set; }
+        [Display(Name = "Врач")]
         public Nullable<int> id_doctor { get; set; }
+        [Display(Name = "Дата и время")]
         public Nullable<System.DateTime> date { get; set; }
+        [Display(Name = "Доступность")]
         public Nullable<bool> status { get; set; }
     
         public virtual Doctor Doctor { get; set; }

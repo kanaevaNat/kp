@@ -168,7 +168,7 @@ namespace kp4.Controllers
                     db.SaveChanges();*/
                     //}
                     //if (User.IsInRole == "patient"){
-                        Patient pat = new Patient { login = email };
+                        Patient pat = new Patient { login = model.Email };
                         db.Patient.Add(pat);
                         db.SaveChanges();
                     //} 

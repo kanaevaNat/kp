@@ -59,7 +59,8 @@ namespace kp4.Controllers
         // GET: Diagnosis/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Diagnosis diag = db.Diagnosis.Find(id);
+            return View(diag);
         }
 
         // POST: Diagnosis/Edit/5
@@ -78,11 +79,16 @@ namespace kp4.Controllers
         //GET: Diagnosis/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Diagnosis d = db.Diagnosis.Find(id);
+            if (d == null)
+            {
+                return HttpNotFound();
+            }
+            return View(d);
         }
 
         //POST: Diagnosis/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         public ActionResult DeleteOne(int id)
         {
             db.Diagnosis.Remove(db.Diagnosis.Find(id));

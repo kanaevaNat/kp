@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<kp4.Models.Entry>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+
 </p>
 <table class="table">
     <tr>
@@ -36,7 +36,7 @@
         </td>
         <td>
             @Html.ActionLink("Посещение", "AddVisit", new { identry = item.id }) |
-            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Изменить", "Edit", new { id = item.id }) |
         </td>
     </tr>
 }
