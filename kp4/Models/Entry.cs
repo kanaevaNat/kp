@@ -11,13 +11,19 @@ namespace kp4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Entry
     {
+        [Key]
         public int id { get; set; }
+        [Display(Name = "Пациент")]
         public Nullable<int> id_patient { get; set; }
+        [Display(Name = "Врач")]
         public Nullable<int> id_doctor { get; set; }
+        [Display(Name = "Расписание")]
         public Nullable<int> id_schedule { get; set; }
+        [Display(Name = "Статус")]
         public Nullable<int> id_status { get; set; }
     
         public virtual Doctor Doctor { get; set; }

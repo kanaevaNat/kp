@@ -10,6 +10,11 @@ using Microsoft.Ajax.Utilities;
 using System.Threading;
 using System.Security.Claims;
 
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System.Web.Security;
+
 namespace kp4.Controllers
 {
     public class PatientController : Controller
@@ -18,19 +23,28 @@ namespace kp4.Controllers
         // GET: Patient
         public ActionResult Index()
         {
-            return View();
+            var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+            var email = HttpContext.User.Identity.Name;
+            string role = Roles.GetRolesForUser(User.Identity.Name).First();
+
+            // проверка в таблице 
+            Doctor doctor = db.Doctor.Where(l => l.login == email).First();
+
+            IEnumerable<Patient> pat = db.Patient.Where(w => w.id_doctor == doctor.id).ToList();
+            return View(pat);
+ 
         }
+
+
         public ActionResult Account()
         {
             var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
             var email = HttpContext.User.Identity.Name;
 
             // проверка в таблице 
-            Patient patient = db.Patient.Where(l => l.login == email).First();
-            int z = patient.id;
-
-            patient = db.Patient.Find(z);
-            return View(patient);
+            Patient pat = db.Patient.Where(l => l.login == email).First();
+            var dd = db.Patient.Include(p => p.Doctor);
+            return View(pat);
         }
         // GET: Patient/Details/5
         public ActionResult Details(int id)
@@ -61,10 +75,12 @@ namespace kp4.Controllers
         }
 
         // GET: Patient/Edit/5
-        public ActionResult Edit(int id=0)
+        public ActionResult Edit(int id)
         {
-            Patient patient = db.Patient.Find(id);
-            return View(patient);
+            var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+            var email = HttpContext.User.Identity.Name;
+            Patient pat = db.Patient.Where(l => l.login == email).First();
+            return View(pat);
         }
 
         // POST: Patient/Edit/5
@@ -90,16 +106,9 @@ namespace kp4.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
+                db.Entry.Remove(db.Entry.Find(id));
+                db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

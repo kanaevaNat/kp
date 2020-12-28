@@ -1,12 +1,16 @@
 ﻿@model IEnumerable<kp4.Models.Medicament>
 
-<p>
-    @Html.ActionLink("Добавить", "Create")
-</p>
+    <p>
+        @if (User.IsInRole("admin"))
+        {@Html.ActionLink("Добавить", "Create")}
+    </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
         </th>
         <th></th>
     </tr>
@@ -17,12 +21,17 @@
             @Html.DisplayFor(modelItem => item.name)
         </td>
         <td>
-            @{ if (User.IsInRole("admin"))
-                {@Html.ActionLink("Изменить", "Edit", new { id = item.id }) 
-                 @Html.ActionLink("Подробнее", "Details", new{id = item.id }) 
-                 @Html.ActionLink("Удалить", "Delete", new { id = item.id })
-                }
-            }
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @if (User.IsInRole("admin"))
+            {@Html.ActionLink("Изменить", "Edit", new { id = item.id })} |
+
+            @if (User.IsInRole("admin"))
+            {@Html.ActionLink("Подробнее", "Details", new { id = item.id })} |
+
+            @if (User.IsInRole("admin"))
+            {@Html.ActionLink("Удалить", "Delete", new { id = item.id })}
         </td>
     </tr>
 }

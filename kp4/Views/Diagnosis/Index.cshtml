@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<kp4.Models.Diagnosis>
 
-<p>
-    @Html.ActionLink("Добавить", "Create")
-</p>
+    <p>
+        @if (User.IsInRole("admin"))
+        {@Html.ActionLink("Добавить", "Create")}
+    </p>
 <table class="table">
     <tr>
         <th>
@@ -14,7 +15,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.name)
@@ -24,9 +26,13 @@
         </td>
         <td>
             @if (User.IsInRole("admin"))
-                { @Html.ActionLink("Изменить", "Edit", new { id = item.id }); 
-                    @Html.ActionLink("Подробнее", "Details", new { id = item.id }); 
-                @Html.ActionLink("Удалить", "Delete", new { id = item.id }) }
+            {@Html.ActionLink("Изменить", "Edit", new { id = item.id })} |
+
+            @if (User.IsInRole("admin"))
+            {@Html.ActionLink("Подробнее", "Details", new { id = item.id })} |
+
+            @if (User.IsInRole("admin"))
+            {@Html.ActionLink("Удалить", "Delete", new { id = item.id })}
         </td>
     </tr>
 }

@@ -11,7 +11,8 @@ namespace kp4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Diagnosis
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,9 +20,11 @@ namespace kp4.Models
         {
             this.Visit = new HashSet<Visit>();
         }
-    
+        [Key]
         public int id { get; set; }
+        [Display(Name = "Название")]
         public string name { get; set; }
+        [Display(Name = "Описание")]
         public string description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

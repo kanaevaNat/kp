@@ -1,8 +1,21 @@
 ﻿@model IEnumerable<kp4.Models.Doctor>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@*<div class="search_box">
+    <div class="search_content">
+        @using (Ajax.BeginForm("Search", new AjaxOptions
+        {
+        UpdateTargetId = "results",
+        LoadingElementId = "loading"
+        }))
+        {
+        <label for="text">Фамилия</label>
+        <input id="text" type="text" name="GName" />
+        <input type="submit" value="Поиск" />
+        }
+    </div>
+</div>
+<div id="results">*@
+
 <table class="table">
     <tr>
         <th>
@@ -15,24 +28,17 @@
             @Html.DisplayNameFor(model => model.patronymic)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.adress)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.cabinet)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.spec)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.login)
-        </th>
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.last_name)
@@ -43,29 +49,26 @@
         <td>
             @Html.DisplayFor(modelItem => item.patronymic)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.adress)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.cabinet)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.spec)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.login)
-        </td>
+
         <td>
             @Html.ActionLink("Записаться", "AddEntry", new { iddoctor = item.id }) |
-
-            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            @{ if (User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) 
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) 
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    }
+                }
         </td>
     </tr>
 }
 
 </table>
+    @*</div>*@

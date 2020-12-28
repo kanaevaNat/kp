@@ -179,6 +179,7 @@
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\StatusEntryController.cs" />
+    <Compile Include="Controllers\VisitController.cs" />
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\DiagnosisDAO.cs" />
     <Compile Include="DAO\MedicamentDAO.cs" />
@@ -267,6 +268,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -306,17 +309,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Medicament\Details.cshtml" />
-    <Content Include="Views\Medicament\Create.cshtml" />
-    <Content Include="Views\Medicament\Edit.cshtml" />
-    <Content Include="Views\Medicament\DeleteOne.cshtml" />
     <Content Include="Views\Doctor\Create.cshtml" />
-    <Content Include="Views\Medicament\Index.cshtml" />
     <Content Include="Views\Diagnosis\Index.cshtml" />
     <Content Include="Views\Diagnosis\Details.cshtml" />
     <Content Include="Views\Diagnosis\Create.cshtml" />
     <Content Include="Views\Diagnosis\Edit.cshtml" />
-    <Content Include="Views\Diagnosis\DeleteOne.cshtml" />
     <Content Include="Views\StatusEntry\Create.cshtml" />
     <Content Include="Views\StatusEntry\Index.cshtml" />
     <Content Include="Views\Entry\Index.cshtml" />
@@ -331,6 +328,21 @@
     <Content Include="Views\Doctor\Account.cshtml" />
     <Content Include="Views\Schedule\AddSchedule.cshtml" />
     <Content Include="Views\Entry\Edit.cshtml" />
+    <Content Include="Views\Visit\IndexForDoctor.cshtml" />
+    <Content Include="Views\Visit\IndexForPatient.cshtml" />
+    <Content Include="Views\Patient\Index.cshtml" />
+    <Content Include="Views\Doctor\SendError.cshtml" />
+    <Content Include="Views\Doctor\Edit.cshtml" />
+    <Content Include="Views\Diagnosis\Delete.cshtml" />
+    <Content Include="Views\Medicament\Index.cshtml" />
+    <Content Include="Views\Medicament\Details.cshtml" />
+    <Content Include="Views\Medicament\Create.cshtml" />
+    <Content Include="Views\Medicament\Edit.cshtml" />
+    <Content Include="Views\Medicament\Delete.cshtml" />
+    <Content Include="Views\Visit\Details.cshtml" />
+    <Content Include="Views\Visit\Edit.cshtml" />
+    <Content Include="Views\Visit\Delete.cshtml" />
+    <Content Include="Views\Doctor\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

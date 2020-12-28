@@ -46,7 +46,7 @@ namespace kp4.Controllers
             return View(entry);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int id = 0)
         {
             Entry entry = db.Entry.Find(id);
             if (entry == null)
@@ -103,12 +103,18 @@ namespace kp4.Controllers
 
 
         // GET: Entry/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id = 0)
         {
-            SelectList entry1 = new SelectList(db.StatusEntry, "id", "name");
+            Entry v = db.Entry.Find(id);
+            if (v == null)
+            {
+
+                return HttpNotFound();
+            }
+            SelectList entry1 = new SelectList(db.StatusEntry, "id", "name", v.id_status);
             ViewBag.StatusEntry = entry1;
 
-            return View();
+            return View(v);
         }
 
         // POST: Entry/Edit/5
@@ -116,8 +122,11 @@ namespace kp4.Controllers
         public ActionResult Edit(Entry entry)
         {
             if (ModelState.IsValid)
-            {
-                db.Entry(entry).State = EntityState.Modified;
+            {         
+                StatusEntry s = db.StatusEntry.Where(l => l.id == entry.id_status).First();
+                Schedule sc = db.Schedule.Where(l => l.id == entry.id_schedule).First();
+                if (s.name == "Отклонена") { sc.status = true; }
+                    db.Entry(entry).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("IndexForDoctor");
             }

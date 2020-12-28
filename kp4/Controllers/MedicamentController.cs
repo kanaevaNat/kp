@@ -56,7 +56,8 @@ namespace kp4.Controllers
         // GET: Medicament/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Medicament m = db.Medicament.Find(id);
+            return View(m);
         }
 
         // POST: Medicament/Edit/5
@@ -73,13 +74,18 @@ namespace kp4.Controllers
         }
 
         // GET: Medicament/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id = 0)
         {
-            return View();
+            Medicament m = db.Medicament.Find(id);
+            if (m == null)
+            {
+                return HttpNotFound();
+            }
+            return View(m);
         }
 
         // POST: Medicament/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         public ActionResult DeleteOne(int id)
         {
                 db.Medicament.Remove(db.Medicament.Find(id));
